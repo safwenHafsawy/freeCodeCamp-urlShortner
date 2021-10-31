@@ -7,7 +7,7 @@ const shortUrl = (req, res) => {
     return res.status(400).send("INVALID");
   }
   urlModel.find({}, (err, data) => {
-    if (err) return res.status(400).json({ error: err });
+    if (err) return res.status(404).json({ error: err });
     let urlNumber = 0;
     data.forEach((ele) => {
       if (ele["shortUrl"] > urlNumber) {
@@ -28,7 +28,7 @@ const shortUrl = (req, res) => {
 const longUrl = (req, res) => {
   const { shortUrl } = req.params;
   urlModel.findOne({ shortUrl: shortUrl }, (err, data) => {
-    if (err) return res.status(400).json({ err });
+    if (err) return res.status(404).json({ err });
     const { longUrl } = data;
     return res.status(200).redirect(longUrl);
   });
