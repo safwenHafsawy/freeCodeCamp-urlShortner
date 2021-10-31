@@ -1,7 +1,7 @@
 const urlModel = require("../models/urlmodel");
 
 const shortUrl = (req, res) => {
-  let urlPatt = /[H-h]ttp[s]?\:\/\/www.[a-zA-Z0-9]+.com/;
+  let urlPatt = /[H-h]ttp[s]?\:\/\/[www]*.[a-zA-Z0-9]+.com/;
   const { url } = req.body;
   if (!urlPatt.test(url)) {
     return res.status(401).send("INVALID");
