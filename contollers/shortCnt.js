@@ -21,7 +21,6 @@ const shortUrl = (req, res) => {
     });
 
     urlDB.save().then(() => {
-      urlNumber += 1;
       res.status(201).json({ original_url: url, short_url: urlNumber });
     });
   });
