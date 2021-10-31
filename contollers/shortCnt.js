@@ -14,15 +14,15 @@ const shortUrl = (req, res) => {
         urlNumber = ele["shortUrl"];
       }
     });
-    console.log(urlNumber);
+    urlNumber += 1;
     const urlDB = new urlModel({
       longUrl: url,
-      shortUrl: urlNumber + 1,
+      shortUrl: urlNumber,
     });
 
     urlDB.save().then(() => {
       urlNumber += 1;
-      res.status(201).json({ original_url: url, short_url: urlNumber + 1 });
+      res.status(201).json({ original_url: url, short_url: urlNumber });
     });
   });
 };
