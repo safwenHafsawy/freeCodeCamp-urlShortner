@@ -4,7 +4,7 @@ const shortUrl = (req, res) => {
   let urlPatt = /[H-h]ttp[s]?\:\/\/[www]*.[a-zA-Z0-9.-]+.com/;
   const { url } = req.body;
   if (!urlPatt.test(url)) {
-    return res.status(400).json({ error: "invalid url" });
+    return res.json({ error: "invalid url" });
   }
   urlModel.find({}, (err, data) => {
     if (err) return res.status(404).json({ error: err });
