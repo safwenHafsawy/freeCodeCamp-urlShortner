@@ -1,7 +1,7 @@
 const urlModel = require("../models/urlmodel");
 
 const shortUrl = (req, res) => {
-  let urlPatt = /http\:\/\/www.[a-zA-Z0-9]+.com/;
+  let urlPatt = /http[s]?\:\/\/www.[a-zA-Z0-9]+.com/;
   const { url } = req.body;
   if (!urlPatt.test(url)) {
     return res.status(400).send("INVALID");
@@ -19,7 +19,6 @@ const shortUrl = (req, res) => {
       longUrl: url,
       shortUrl: urlNumber,
     });
-
     urlDB.save().then(() => {
       res.status(201).json({ original_url: url, short_url: urlNumber });
     });
